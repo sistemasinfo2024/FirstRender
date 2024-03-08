@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+    <style>
+        .center{
+            text-align: center;
+        }
+        body {
+            background-color: #333; /* Dark background color */
+            color: #fff; /* Light font color */
+            font-family: Arial, sans-serif; /* Use any preferred font family */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Style for headings */
+        h1, h2, h3 {
+            color: #00bfff; /* Light blue font color */
+        }
+
+        /* Style for links */
+        a {
+            color: #00bfff; /* Light blue font color for links */
+            text-decoration: none;
+        }
+
+        /* Style for buttons */
+        .btn {
+            background-color: #00bfff; /* Light blue background color for buttons */
+            color: #fff; /* Light font color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        /* Style for table */
+        table {
+            width: 60vw;
+            border-collapse: collapse;
+            margin-left: 150px;
+        }
+
+        table th, table td {
+            padding: 8px;
+            border-bottom: 1px solid #fff;
+        }
+
+        table th {
+            background-color: #00bfff; /* Light blue background color for table headers */
+            color: #fff; /* Light font color for table headers */
+            text-align: center;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #444; /* Dark background color for even rows */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container">
+            <h2 style="text-align: center;">Juegos por Publicador</h2>
+        </div>
+        <table id="publishersTable">
+            <thead>
+                <tr>
+                    <th>Publicador</th>
+                    <th>Cantidad de Juegos</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table body will be populated dynamically -->
+            </tbody>
+        </table>
+
+        <script>
+            // var data = [
+            //     { "publisher": "Ubisoft", "count": 385 },
+            //     { "publisher": "Dovetail Games - Trains", "count": 360 },
+            //     { "publisher": "Degica", "count": 286 },
+            //     { "publisher": "Paradox Interactive", "count": 271 },
+            //     { "publisher": "SEGA", "count": 251 },
+            //     { "publisher": "Dovetail Games - Flight", "count": 220 },
+            //     { "publisher": "KOEI TECMO GAMES CO., LTD.", "count": 208 },
+            //     { "publisher": "Activision", "count": 202 },
+            //     { "publisher": "Big Fish Games", "count": 195 },
+            //     { "publisher": "KISS ltd", "count": 189 }
+            // ];
+
+            $(document).ready(function () {
+                // Make a GET request to the API endpoint using Axios
+                axios.get('https://fastapi-example-warn.onrender.com/')
+                    .then(response => {
+                        // Update the HTML content of the table
+                        var data = response.data;
+                        var tableBody = $("#tableBody");
+
+                        if (data.length > 0) {
+                            data.forEach((item) => {
+                                // Create a table row and append it to the table body
+                                var row = $("<tr>");
+                                row.append($("<td>").text(item.publisher));
+                                row.append($("<td class='center'>").text(item.count));
+                                tableBody.append(row);
+                            });
+                        } else {
+                            // Handle case when data is empty
+                            tableBody.append("<tr><td colspan='2'>No data available</td></tr>");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        // Handle errors if any
+                    });
+            });
+
+
+
+        </script>
+        <div class="container">
+            <div id="letra"></div>
+        </div>
+    </div>
+</body>
+
+</html>
