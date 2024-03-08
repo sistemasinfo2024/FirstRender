@@ -8,10 +8,7 @@ app = FastAPI()
 pb = pd.read_csv('publishers.csv' )  
 print(type(pb.to_dict()))
 
-
-
 @app.get("/")
-<<<<<<< HEAD
 async def root() -> List[Dict]:
     pb = pd.read_csv('publishers.csv')    
     # list(pb.to_dict())
