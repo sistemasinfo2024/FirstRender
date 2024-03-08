@@ -17,13 +17,17 @@
 
 
     <style>
-        .center{
+        .center {
             text-align: center;
         }
+
         body {
-            background-color: #333; /* Dark background color */
-            color: #fff; /* Light font color */
-            font-family: Arial, sans-serif; /* Use any preferred font family */
+            background-color: #333;
+            /* Dark background color */
+            color: #fff;
+            /* Light font color */
+            font-family: Arial, sans-serif;
+            /* Use any preferred font family */
             margin: 0;
             padding: 0;
         }
@@ -35,20 +39,26 @@
         }
 
         /* Style for headings */
-        h1, h2, h3 {
-            color: #00bfff; /* Light blue font color */
+        h1,
+        h2,
+        h3 {
+            color: #00bfff;
+            /* Light blue font color */
         }
 
         /* Style for links */
         a {
-            color: #00bfff; /* Light blue font color for links */
+            color: #00bfff;
+            /* Light blue font color for links */
             text-decoration: none;
         }
 
         /* Style for buttons */
         .btn {
-            background-color: #00bfff; /* Light blue background color for buttons */
-            color: #fff; /* Light font color */
+            background-color: #00bfff;
+            /* Light blue background color for buttons */
+            color: #fff;
+            /* Light font color */
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -61,24 +71,33 @@
 
         /* Style for table */
         table {
-            width: 60vw;
+            width: 100%;
             border-collapse: collapse;
-            margin-left: 150px;
+
         }
 
-        table th, table td {
+        table th,
+        table td {
             padding: 8px;
             border-bottom: 1px solid #fff;
         }
 
         table th {
-            background-color: #00bfff; /* Light blue background color for table headers */
-            color: #fff; /* Light font color for table headers */
+            background-color: #00bfff;
+            /* Light blue background color for table headers */
+            color: #fff;
+            /* Light font color for table headers */
             text-align: center;
         }
 
         table tr:nth-child(even) {
-            background-color: #444; /* Dark background color for even rows */
+            background-color: #444;
+            /* Dark background color for even rows */
+        }
+
+        .table-container {
+            width: 60vw;
+            margin-left: 150px;
         }
     </style>
 </head>
@@ -86,34 +105,26 @@
 <body>
 
     <div class="container">
-        <div class="container">
-            <h2 style="text-align: center;">Juegos por Publicador</h2>
-        </div>
-        <table id="publishersTable">
-            <thead>
-                <tr>
-                    <th>Publicador</th>
-                    <th>Cantidad de Juegos</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <!-- Table body will be populated dynamically -->
-            </tbody>
-        </table>
 
+        <div class="table-container">
+
+            <div class="container">
+                <h2 style="text-align: center;">Juegos por Publicador</h2>
+            </div>
+
+            <table id="publishersTable">
+                <thead>
+                    <tr>
+                        <th>Publicador</th>
+                        <th>Cantidad de Juegos</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table body will be populated dynamically -->
+                </tbody>
+            </table>
+        </div>
         <script>
-            // var data = [
-            //     { "publisher": "Ubisoft", "count": 385 },
-            //     { "publisher": "Dovetail Games - Trains", "count": 360 },
-            //     { "publisher": "Degica", "count": 286 },
-            //     { "publisher": "Paradox Interactive", "count": 271 },
-            //     { "publisher": "SEGA", "count": 251 },
-            //     { "publisher": "Dovetail Games - Flight", "count": 220 },
-            //     { "publisher": "KOEI TECMO GAMES CO., LTD.", "count": 208 },
-            //     { "publisher": "Activision", "count": 202 },
-            //     { "publisher": "Big Fish Games", "count": 195 },
-            //     { "publisher": "KISS ltd", "count": 189 }
-            // ];
 
             $(document).ready(function () {
                 // Make a GET request to the API endpoint using Axios
