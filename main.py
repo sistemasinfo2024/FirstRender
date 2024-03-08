@@ -1,19 +1,26 @@
 from typing import Optional, List, Dict
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can specify specific origins instead of ["*"]
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["*"],
+)
+
 pb = pd.read_csv('publishers.csv' )  
-print(type(pb.to_dict()))
 
 @app.get("/")
 async def root() -> List[Dict]:
     pb = pd.read_csv('publishers.csv')    
-    # list(pb.to_dict())
     return pb.iloc[:10,:].to_dict(orient='records')
-    # return {"message": "Hola Mundo!!!"}
+
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
